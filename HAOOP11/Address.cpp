@@ -1,11 +1,11 @@
 ﻿#include "Address.h"
 #include "Mask.h"
 
-Address Address::StringToAddress(std::string str)
+Address Address::stringToAddress(std::string str)
 {
-	int* arr = StringToArr(str);
+	int* arr = stringToArr(str);
 	if (!IsValidIP(arr[0], arr[1], arr[2], arr[3]))
-		std::cout << "Адрес невалидный!\n";
+		std::cout << "Неверный адрес" << std::endl;
 	Address tmp_mask(arr[0], arr[1], arr[2], arr[3]);
 	return tmp_mask;
 }
@@ -31,7 +31,7 @@ Address::Address(long long int addr)
 }
 
 
-int* Address::StringToArr(std::string str)
+int* Address::stringToArr(std::string str)
 {
 	int arr[4]{};
 	std::string s_tmp;
@@ -61,7 +61,7 @@ Address::Address() : _first_oktet(0), _second_oktet(0), _third_oktet(0), _fouth_
 
 Address::Address(std::string addr)
 {
-	*this = StringToAddress(addr);
+	*this = stringToAddress(addr);
 }
 
 Address::Address(int first_oktet, int second_oktet, int third_oktet, int fouth_oktet)
@@ -111,7 +111,7 @@ bool Address::operator<(const Address& addr)
 	}
 }
 
-Address Address::ConvertToNetworkAddress(Mask& mask)
+Address Address::convertToNetworkAddress(Mask& mask)
 {
 	long long int maskInlonglongInt = mask.IPToLongInt();
 	long long int addrInLongLongInt = this->IPToLongInt();

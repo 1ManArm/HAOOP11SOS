@@ -6,7 +6,7 @@ Mask Mask::StringToMask(std::string str)
 	int* arr = StringToArr(str);
 	if (!IsValidIP(arr[0], arr[1], arr[2], arr[3]))
 	{
-		std::cout << "Маска невалидна!\n";
+		std::cout << "Маска некорректна\n";
 		return { 0,0,0,0 };
 	}
 	Mask tmp_addr(arr[0], arr[1], arr[2], arr[3]);
@@ -92,7 +92,7 @@ bool Mask::CorrespondenceBetweenAddressAndMask(Address addr)
 {
 	Address mask((int)_first_oktet, (int)_second_oktet, (int)_third_oktet, (int)_fouth_oktet);
 
-	Address networkAddress(addr.ConvertToNetworkAddress(*this));
+	Address networkAddress(addr.convertToNetworkAddress(*this));
 	long long int networkAddr = networkAddress.IPToLongInt();
 	long long int networkMask = mask.IPToLongInt();
 	int countNetworkZero = 0;

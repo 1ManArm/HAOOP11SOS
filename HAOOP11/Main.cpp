@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <string>
 #include <cassert>
-#include "Mask.h"
+#include "funcs.h"
 #include "Address.h"
 
 void testEqualOperator()
@@ -81,16 +81,16 @@ void testConvertToNetworkAddress()
 	Address a1("192.168.1.100");
 	Address a2("192.168.1.0");
 	Mask m1("255.255.255.0");
-	Address networkAddress(a1.ConvertToNetworkAddress(m1));
+	Address networkAddress(a1.convertToNetworkAddress(m1));
 	assert(networkAddress == a2);
 }
 
 void Test()
 {
-	testIsValidIPMask();							
-	testIsValidIPAddress();							
-	testCorrespondenceBetweenAddressAndMask();		
-	testEqualOperator();							
+	testCorrespondenceBetweenAddressAndMask();
+	testIsValidIPMask();
+	testIsValidIPAddress();
+	testEqualOperator();
 	testLessOperator();								
 	testAmountOfNodes();							
 	testConvertToNetworkAddress();					
